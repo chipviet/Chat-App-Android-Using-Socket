@@ -4,10 +4,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.glxn.qrgen.android.QRCode;
 
@@ -20,6 +25,8 @@ public class ShowInfoActivity extends AppCompatActivity {
 
     private static final int selfPort = 8080;
     private Server myServer;
+
+    private static final int ENTER_INFO = 200;
 
     public void setConnected(User user) {
         Intent data = new Intent();
@@ -41,9 +48,37 @@ public class ShowInfoActivity extends AppCompatActivity {
         ipView.setText(ip_address);
         portView.setText(Integer.toString(selfPort));
 
-        Bitmap myBitmap = QRCode.from(ip_address+":"+selfPort).bitmap();
-        ImageView myImage = (ImageView) findViewById(R.id.qr_view);
-        myImage.setImageBitmap(myBitmap);
+//        Bitmap myBitmap = QRCode.from(ip_address+":"+selfPort).bitmap();
+////        ImageView myImage = (ImageView) findViewById(R.id.qr_view);
+//        myImage.setImageBitmap(myBitmap);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.naViewFun);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(1);
+        menuItem.setChecked(true);
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.item_chat:
+                        Intent intent = new Intent(getApplicationContext(), DialogViewActivity.class);
+                        startActivityForResult(intent, 0);
+                        break;
+                    case R.id.item_connect:
+                        Intent connect = new Intent(getApplicationContext(), ConnectToUserActivity.class);
+                        startActivityForResult(connect, ENTER_INFO);
+                        break;
+                    case R.id.item_show_info:
+
+                        break;
+                }
+
+                return false;
+            }
+        });
     }
 
     @Override

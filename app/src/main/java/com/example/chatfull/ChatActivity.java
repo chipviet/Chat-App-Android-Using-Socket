@@ -239,41 +239,41 @@ public class ChatActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.background_button:
-                ColorPickerDialogBuilder
-                        .with(this)
-                        .setTitle("Choose color")
-                        .initialColor(Color.WHITE)
-                        .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-                        .density(12)
-                        .setOnColorSelectedListener(new OnColorSelectedListener() {
-                            @Override
-                            public void onColorSelected(int selectedColor) {
-                                Toast.makeText(getApplicationContext(), "onColorSelected: 0x" + Integer.toHexString(selectedColor), Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setPositiveButton("ok", new ColorPickerClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-                                Message message = new Message(Integer.toString(++cnt), DialogViewActivity.me, null, Calendar.getInstance().getTime());
-                                message.setColor(selectedColor);
-                                message.setIsColor(true);
-
-                                sender = new SendMessage(user.getIpAddress(), user.getPort(), message, ChatActivity.this);
-                                sender.execute();
-                                back_view.setBackgroundColor(selectedColor);
-                            }
-                        })
-                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        })
-                        .build()
-                        .show();
-                break;
-        }
+//        switch (id) {
+//            case R.id.background_button:
+//                ColorPickerDialogBuilder
+//                        .with(this)
+//                        .setTitle("Choose color")
+//                        .initialColor(Color.WHITE)
+//                        .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+//                        .density(12)
+//                        .setOnColorSelectedListener(new OnColorSelectedListener() {
+//                            @Override
+//                            public void onColorSelected(int selectedColor) {
+//                                Toast.makeText(getApplicationContext(), "onColorSelected: 0x" + Integer.toHexString(selectedColor), Toast.LENGTH_SHORT).show();
+//                            }
+//                        })
+//                        .setPositiveButton("ok", new ColorPickerClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+//                                Message message = new Message(Integer.toString(++cnt), DialogViewActivity.me, null, Calendar.getInstance().getTime());
+//                                message.setColor(selectedColor);
+//                                message.setIsColor(true);
+//
+//                                sender = new SendMessage(user.getIpAddress(), user.getPort(), message, ChatActivity.this);
+//                                sender.execute();
+//                                back_view.setBackgroundColor(selectedColor);
+//                            }
+//                        })
+//                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                            }
+//                        })
+//                        .build()
+//                        .show();
+//                break;
+//        }
         return super.onOptionsItemSelected(item);
     }
 

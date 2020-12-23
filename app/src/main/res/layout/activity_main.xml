@@ -1,92 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
-    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-
-    <Button
-        android:id="@+id/continue_btn"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/buttonshape"
-        android:elevation="25dp"
-        android:fontFamily="@font/moon_bold"
-        android:text="Continue"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameInput"
-        app:layout_constraintVertical_bias="0.279" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/ic_user_circle_solid"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nameInput"
-        app:layout_constraintHorizontal_bias="0.892"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337" />
-
-    <EditText
-        android:id="@+id/nameInput"
-        android:layout_width="229dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="#fff"
-        android:fontFamily="@font/sanfran"
-        android:hint="User name"
-        android:textColor="@color/white"
-        android:textColorHint="#A4A4F7"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33" />
+    tools:context=".MainActivity"
+    android:weightSum="10">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0.25"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/sanfran"
         android:gravity="center"
-        android:text="Please Enter Username\nThis will be your Unique ID"
-        android:textColor="#A4A4F7"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/nameInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        android:layout_gravity="center"
+        android:text="Chat App"
+        android:textColor="#F64C5B"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/imageBackground"
+        android:layout_width="413dp"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/background_illustration"
+        app:layout_constraintEnd_toStartOf="@+id/nameInput"
+        app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.75"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/sanfran"
+            android:gravity="center"
+            android:text="Please Enter Username\nThis will be your Unique ID"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageBackground" />
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="229dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/sanfran"
+            android:hint="User name"
+            android:imeOptions="actionDone"
+            android:textColor="#000000"
+            android:ems="10"
+            android:inputType="text"
+            android:textColorHint="#6E6E6E" />
+
+        <Button
+            android:id="@+id/continue_btn"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/buttonshape"
+            android:elevation="25dp"
+            android:fontFamily="@font/moon_bold"
+            android:text="Continue"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+    </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

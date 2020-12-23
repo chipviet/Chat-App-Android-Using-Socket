@@ -5,15 +5,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
@@ -90,15 +94,44 @@ public class DialogViewActivity extends AppCompatActivity
         if (dialogsAdapter.isEmpty())
             overlay.setVisibility(View.VISIBLE);
 
-        fabShowInfo = findViewById(R.id.showInfoFab);
-        fabEnterInfo = findViewById(R.id.enterInfoFab);
-        fam = findViewById(R.id.fab_menu);
-        fabShowInfo.setOnClickListener(onButtonClick());
-        fabEnterInfo.setOnClickListener(onButtonClick());
+
 
         loaded = false;
         saved = false;
         dialogArrayList = new ArrayList<>();
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.naViewFun);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.item_chat:
+
+                        break;
+                    case R.id.item_connect:
+
+                        Intent connect = new Intent(getApplicationContext(), ConnectToUserActivity.class);
+                        startActivityForResult(connect, ENTER_INFO);
+
+                        break;
+                    case R.id.item_show_info:
+
+                        Intent intent = new Intent(getApplicationContext(), ShowInfoActivity.class);
+                        startActivityForResult(intent, SHOW_INFO);
+
+                        break;
+                }
+
+                return false;
+            }
+        });
+
 
     }
 
@@ -166,21 +199,6 @@ public class DialogViewActivity extends AppCompatActivity
         }
     }
 
-    private View.OnClickListener onButtonClick() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (view == fabShowInfo) {
-                    Intent intent = new Intent(getApplicationContext(), ShowInfoActivity.class);
-                    startActivityForResult(intent, SHOW_INFO);
-                } else if (view == fabEnterInfo) {
-                    Intent intent = new Intent(getApplicationContext(), ConnectToUserActivity.class);
-                    startActivityForResult(intent, ENTER_INFO);
-                }
-                fam.close(true);
-            }
-        };
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

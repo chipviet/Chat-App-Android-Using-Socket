@@ -49,49 +49,31 @@
         android:text="You Don't Have any Friends Yet\nConnect with friends to start chatting"
         android:fontFamily="@font/sanfran"/>
 
-    <com.github.clans.fab.FloatingActionMenu
 
-        android:id="@+id/fab_menu"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        fab:menu_fab_label=""
-        fab:fab_colorNormal="@color/colorPurpleLight"
-        fab:fab_colorPressed="@color/colorPurpleDark"
-        fab:fab_colorRipple="#99FFFFFF"
-        fab:fab_showShadow="true"
-        fab:menu_labels_colorPressed="#444444"
-        fab:menu_labels_colorRipple="#66FFFFFF"
-        fab:menu_labels_showShadow="true"
-        fab:menu_labels_maxLines="-1"
-        fab:menu_labels_position="left"
-        fab:menu_openDirection="up"
-        fab:fab_shadowColor="#66000000"
-        fab:menu_labels_ellipsize="end"
-        fab:menu_labels_singleLine="true">
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/showInfoFab"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fmContainer"
+            android:layout_above="@+id/naViewFun"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/naViewFun"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_information"
-            fab:fab_label="Show Info"
-
-            fab:fab_size="mini" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/enterInfoFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_keyboard"
-            fab:fab_label="Enter IP:PORT"
-            fab:fab_size="mini" />
-
-    </com.github.clans.fab.FloatingActionMenu>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fmContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_fun_chat" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

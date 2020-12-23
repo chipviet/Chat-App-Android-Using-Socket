@@ -8,7 +8,6 @@
     tools:context=".ConnectToUserActivity"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/background_gradient"
     >
 
     <include layout="@layout/include_progress_overlay"/>
@@ -20,12 +19,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="#fff"
+        android:backgroundTint="#000000"
         android:fontFamily="@font/moon_bold"
         android:hint="IP ADDRESS"
         android:inputType="number|textWebEditText"
-        android:textColor="#fff"
-        android:textColorHint="#A4A4F7"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,12 +42,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="#fff"
+        android:backgroundTint="#000000"
         android:fontFamily="@font/moon_bold"
         android:hint="PORT NUMBER"
         android:inputType="number|textWebEditText"
-        android:textColor="#fff"
-        android:textColorHint="#A4A4F7"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,23 +80,29 @@
         app:layout_constraintVertical_bias="0.893"
         android:onClick="connectBtnListener"/>
 
-    <Button
-        android:id="@+id/scan_button"
-        android:layout_width="225dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="140dp"
-        android:drawableStart="@drawable/ic_qrcode"
-        android:fontFamily="@font/moon_bold"
-        android:onClick="onScanBtnClick"
-        android:paddingLeft="35dp"
-        android:text="Scan QR CODE"
-        android:textColor="#312F2F"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fmContainer"
+            android:layout_above="@+id/naViewFun"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/naViewFun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/fmContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_fun_chat" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

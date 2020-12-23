@@ -44,7 +44,6 @@ public class MessageReceiveServer {
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }
-
                 }
             } catch (IOException e) {
                 e.printStackTrace();

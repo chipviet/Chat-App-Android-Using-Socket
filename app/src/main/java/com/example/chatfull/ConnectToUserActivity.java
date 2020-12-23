@@ -3,6 +3,8 @@ package com.example.chatfull;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -10,21 +12,24 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.notbytes.barcode_reader.BarcodeReaderActivity;
 
 public class ConnectToUserActivity extends AppCompatActivity{
 
     private static final int BARCODE_READER_ACTIVITY_REQUEST = 1208;
+    private static final int SHOW_INFO = 100;
 
     private EditText ipInput, portInput;
-    private Button connectBtn, scanBtn;
+    private Button connectBtn;
     private Client myClient;
     private User user;
     FrameLayout progressOverlay;
@@ -46,9 +51,36 @@ public class ConnectToUserActivity extends AppCompatActivity{
         ipInput = findViewById(R.id.ipInput);
         portInput = findViewById(R.id.portInput);
         connectBtn = findViewById(R.id.connectBtn);
-        scanBtn = findViewById(R.id.scan_button);
+//        scanBtn = findViewById(R.id.scan_button);
         progressOverlay = findViewById(R.id.progress_overlay);
 
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.naViewFun);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.item_chat:
+                        Intent connect = new Intent(getApplicationContext(), DialogViewActivity.class);
+                        startActivityForResult(connect,0);
+                        break;
+                    case R.id.item_connect:
+
+                        break;
+                    case R.id.item_show_info:
+                        Intent show = new Intent(getApplicationContext(), ShowInfoActivity.class);
+                        startActivityForResult(show,SHOW_INFO);
+                        break;
+                }
+
+                return false;
+            }
+        });
     }
 
     @Override
@@ -88,17 +120,17 @@ public class ConnectToUserActivity extends AppCompatActivity{
         myClient.execute();
     }
 
-    public void onScanBtnClick(View view) {
-        FragmentManager supportFragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
-        Fragment fragmentById = supportFragmentManager.findFragmentById(R.id.fm_container);
-        if (fragmentById != null) {
-            fragmentTransaction.remove(fragmentById);
-        }
-        fragmentTransaction.commitAllowingStateLoss();
-        Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(this, true, false);
-        startActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST);
-    }
+//    public void onScanBtnClick(View view) {
+//        FragmentManager supportFragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
+//        Fragment fragmentById = supportFragmentManager.findFragmentById(R.id.fm_container);
+//        if (fragmentById != null) {
+//            fragmentTransaction.remove(fragmentById);
+//        }
+//        fragmentTransaction.commitAllowingStateLoss();
+//        Intent launchIntent = BarcodeReaderActivity.getLaunchIntent(this, true, false);
+//        startActivityForResult(launchIntent, BARCODE_READER_ACTIVITY_REQUEST);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

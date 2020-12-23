@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Chat"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:id="@+id/item_chat"
+        app:showAsAction="always"/>
+
+    <item android:title="Show Info"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:id="@+id/item_show_info"
+        app:showAsAction="always"/>
+
+    <item android:title="Connect"
+        android:icon="@drawable/ic_baseline_keyboard_24"
+        android:id="@+id/item_connect"
+        app:showAsAction="always"/>
+</menu>
